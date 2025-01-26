@@ -30,6 +30,11 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
+import leetcode from "./tech/leetcode.svg";
+import cpp from "./tech/cpp.png";
+import c from "./tech/c.png";
+import gfg from "./tech/gfg.svg";
+
 export {
   logo,
   backend,
@@ -59,4 +64,8 @@ export {
   carrent,
   jobit,
   tripguide,
+  leetcode,
+  cpp,
+  c,
+  gfg,
 };

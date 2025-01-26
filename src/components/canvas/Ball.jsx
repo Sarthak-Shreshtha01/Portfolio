@@ -1,24 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls , Decal , Float , Preload , useTexture  } from '@react-three/drei'
+import { OrbitControls, Decal, Float, Preload, useTexture } from '@react-three/drei'
 import CanvasLoader from "../Loader"
 
 const Ball = (props) => {
-
   const [decal] = useTexture([props.imgUrl]); 
 
   return (
-    <Float speed={1.75} rotationIntensity={1} floatIntensity={2}  >
-      <ambientLight intensity={0.5} />
+    <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
+      <ambientLight intensity={0.7} />
       <directionalLight position={[0,0,0.05]} />
-      <mesh castShadow receiveShadow scale={2.75} >
+      <mesh castShadow receiveShadow scale={2.75}>
         <icosahedronGeometry args={[1,1]} />
         <meshStandardMaterial 
-        color="#fff8eb"
-        polygonOffset
-        polygonOffsetFactor={-5}
-        flatShading
+          color="#fff8eb"
+          polygonOffset
+          polygonOffsetFactor={-5}
+          flatShading
         />
 
         <Decal 
@@ -29,7 +28,7 @@ const Ball = (props) => {
         />
         <Decal 
         position={[0,0,-1]}
-        rotation={[0, Math.PI, 0]}
+        rotation={[2 * Math.PI, Math.PI, 6.25]}
         flatShading
         map={decal}
         />
@@ -43,7 +42,11 @@ const BallCanvas = ({icon}) => {
   return(
     <Canvas
       frameloop='demand'
-      gl={{preserveDrawingBuffer : true}}
+      gl={{
+        preserveDrawingBuffer: true,
+      }}
+      dpr={[1, 1.5]}
+      dispose={null}
     >
 
       <Suspense fallback= {<CanvasLoader />} >

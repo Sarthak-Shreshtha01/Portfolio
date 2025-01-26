@@ -23,6 +23,11 @@ import {
     jobit,
     tripguide,
     threejs,
+    c,
+    cpp,
+    leetcode,
+    gfg,
+    // postman,
   } from "../assets";
   
   export const navLinks = [
@@ -76,6 +81,10 @@ import {
       name: "TypeScript",
       icon: typescript,
     },
+    // {
+    //   name: "C",
+    //   icon: c,
+    // },
     {
       name: "React JS",
       icon: reactjs,
@@ -104,14 +113,26 @@ import {
       name: "git",
       icon: git,
     },
-    {
-      name: "figma",
-      icon: figma,
-    },
-    {
-      name: "docker",
-      icon: docker,
-    },
+    // {
+      //   name: "figma",
+      //   icon: figma,
+      // },
+      // {
+        //   name: "docker",
+        //   icon: docker,
+        // },
+        {
+          name: "C++",
+          icon: cpp,
+        },
+        {
+          name: "Leetcode",
+          icon: leetcode,
+        },
+    // {
+    //   name: "GFG",
+    //   icon: gfg,
+    // },
   ];
   
   const experiences = [
@@ -262,4 +283,43 @@ import {
     },
   ];
   
-  export { services, technologies, experiences, testimonials, projects };
+  const education = [
+    {
+      title: "B.Tech in Computer Science and Engineering",
+      school_name: "Birla Institute of Technology, Mesra",
+      icon: "path/to/college/logo",
+      iconBg: "#383E56",
+      date: "Present",
+      points: [
+        "Currently pursuing Computer Science and Engineering",
+        "Selected through JEE Mains with 97.75 percentile",
+        "Maintaining a strong academic performance with 8.4 CGPA"
+      ],
+    },
+    {
+      title: "Higher Secondary Education (12th)",
+      school_name: "Delhi Public School, Bokaro",
+      icon: "path/to/school/logo",
+      iconBg: "#E6DEDD",
+      date: "2023",
+      points: [
+        "Scored 92% in CBSE Board Examinations",
+        "Science Stream",
+        "Achieved distinction in Physics, Chemistry, and Mathematics"
+      ],
+    },
+    {
+      title: "Secondary Education (10th)",
+      school_name: "Delhi Public School, Bokaro",
+      icon: "path/to/school/logo",
+      iconBg: "#383E56",
+      date: "2021",
+      points: [
+        "Scored 96% in CBSE Board Examinations",
+        "Achieved perfect score in Mathematics",
+        "Certified in German Language (Level 1) during school education"
+      ],
+    },
+  ];
+  
+  export { services, technologies, education, experiences, testimonials, projects };
