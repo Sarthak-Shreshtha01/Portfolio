@@ -25,6 +25,8 @@ import {
     threejs,
     c,
     cpp,
+    dps,
+    bit,
     leetcode,
     gfg,
     // postman,
@@ -36,8 +38,8 @@ import {
       title: "About",
     },
     {
-      id: "work",
-      title: "Work",
+      id: "education",
+      title: "Education",
     },
     {
       id: "contact",
@@ -193,27 +195,27 @@ import {
   const testimonials = [
     {
       testimonial:
-        "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-      name: "Sara Lee",
-      designation: "CFO",
-      company: "Acme Co",
-      image: "https://randomuser.me/api/portraits/women/4.jpg",
+        "Working with this developer was a game-changer for our startup. Their expertise in React and modern web technologies helped us scale our platform efficiently.",
+      name: "Priya Sharma",
+      designation: "Technical Director",
+      company: "TechVista Solutions",
+      image: "https://randomuser.me/api/portraits/women/8.jpg",
     },
     {
       testimonial:
-        "I've never met a web developer who truly cares about their clients' success like Rick does.",
-      name: "Chris Brown",
-      designation: "COO",
-      company: "DEF Corp",
-      image: "https://randomuser.me/api/portraits/men/5.jpg",
+        "An exceptional full-stack developer who brings both technical excellence and innovative problem-solving to the table. Their work on our project was outstanding.",
+      name: "Rahul Verma",
+      designation: "Product Manager",
+      company: "InnovateHub India",
+      image: "https://randomuser.me/api/portraits/men/3.jpg",
     },
     {
       testimonial:
-        "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-      name: "Lisa Wang",
-      designation: "CTO",
-      company: "456 Enterprises",
-      image: "https://randomuser.me/api/portraits/women/6.jpg",
+        "Their proficiency in modern web development and ability to deliver clean, maintainable code made them an invaluable asset to our development team.",
+      name: "Arun Patel",
+      designation: "Engineering Lead",
+      company: "Digital Dynamics",
+      image: "https://randomuser.me/api/portraits/men/12.jpg",
     },
   ];
   
@@ -287,7 +289,7 @@ import {
     {
       title: "B.Tech in Computer Science and Engineering",
       school_name: "Birla Institute of Technology, Mesra",
-      icon: "path/to/college/logo",
+      icon: bit,
       iconBg: "#383E56",
       date: "Present",
       points: [
@@ -299,7 +301,7 @@ import {
     {
       title: "Higher Secondary Education (12th)",
       school_name: "Delhi Public School, Bokaro",
-      icon: "path/to/school/logo",
+      icon: dps,
       iconBg: "#E6DEDD",
       date: "2023",
       points: [
@@ -311,7 +313,7 @@ import {
     {
       title: "Secondary Education (10th)",
       school_name: "Delhi Public School, Bokaro",
-      icon: "path/to/school/logo",
+      icon: dps,
       iconBg: "#383E56",
       date: "2021",
       points: [

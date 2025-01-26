@@ -1,6 +1,6 @@
 // https://leetcode-stats-api.herokuapp.com/sarthakshreshtha345
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Pie } from 'react-chartjs-2';
 import {
@@ -12,6 +12,7 @@ import {
 import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { fadeIn, textVariant } from '../utils/motion';
+import axios from 'axios';
 
 // Register ChartJS components
 ChartJS.register(
@@ -40,22 +41,61 @@ const StatsCard = ({ title, value, index }) => (
 
 const DsaDashboard = () => {
   // You can fetch these stats from LeetCode API or hardcode them
+
+  const url = "https://leetcode-stats-api.herokuapp.com/sarthakshreshtha345";
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const getData = async () => {
+    setLoading(true);
+    setError(null);
+    let retries = 0;
+    const maxRetries = 5;
+    const retryDelay = 3000;
+
+    while (retries < maxRetries) {
+      try {
+        const response = await axios.get(url);
+        console.log('API Response:', response.data);
+        const data = response.data;
+        setData(data);
+        setLoading(false);
+        return;
+      } catch (error) {
+        console.error(`Attempt ${retries + 1} failed:`, error.message);
+        retries++;
+        if (retries === maxRetries) {
+          setError('Failed to fetch LeetCode data. Please try again later.');
+          setLoading(false);
+          return;
+        }
+        await new Promise(resolve => setTimeout(resolve, retryDelay));
+      }
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const stats = [
     {
       title: "Total Problems Solved",
-      value: "200+"
+      value: data?.totalSolved
     },
     {
       title: "Easy Problems",
-      value: "85"
+      value: data?.easySolved
     },
     {
       title: "Medium Problems",
-      value: "95"
+      value: data?.mediumSolved
     },
     {
       title: "Hard Problems",
-      value: "20"
+      value: data?.hardSolved
     },
   ];
 
@@ -63,7 +103,7 @@ const DsaDashboard = () => {
     labels: ['Easy', 'Medium', 'Hard'],
     datasets: [
       {
-        data: [85, 95, 20],
+        data: [data?.easySolved, data?.mediumSolved, data?.hardSolved],
         backgroundColor: [
           'rgba(0, 255, 170, 0.7)',  // Vibrant cyan for Easy
           'rgba(255, 140, 0, 0.7)',  // Bright orange for Medium
@@ -135,42 +175,50 @@ const DsaDashboard = () => {
         <h2 className={styles.sectionHeadText}>DSA Progress.</h2>
       </motion.div>
 
-      <div className='flex flex-col lg:flex-row items-center justify-between gap-10 mt-20'>
-        <motion.div
-          variants={fadeIn("right", "spring", 0.5, 0.75)}
-          className='w-full lg:w-1/2 h-[400px] relative'
-        >
-          <div className='absolute inset-0 bg-tertiary rounded-2xl p-8 backdrop-blur-sm bg-opacity-20'>
-            <div className='relative h-full'>
-              <Pie data={chartData} options={chartOptions} />
-              <div className='absolute inset-0 flex items-center justify-center flex-col'>
-                <div className='mb-7 opacity-0 hover:opacity-100 transition-opacity duration-300 text-center'>
-                  <span className='text-white text-2xl font-bold block'>Acceptance <br /> Rate</span>
-                  <span className='text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent'>
-                    65.2%
-                  </span>
+      {loading ? (
+        <div className='spinner'></div>
+      ) : error ? (
+        <div className='text-red-500 text-center mt-10'>{error}</div>
+      ) : !data ? (
+        <div className='text-white text-center mt-10'>No data available</div>
+      ) : (
+        <div className='flex flex-col lg:flex-row items-center justify-between gap-10 mt-20'>
+            <motion.div
+            variants={fadeIn("right", "spring", 0.5, 0.75)}
+            className='w-full lg:w-1/2 h-[400px] relative'
+            >
+            <div className='absolute inset-0 bg-tertiary rounded-2xl p-8 backdrop-blur-sm bg-opacity-20'>
+                <div className='relative h-full'>
+                <Pie data={chartData} options={chartOptions} />
+                <div className='absolute inset-0 flex items-center justify-center flex-col'>
+                    <div className='mb-7 opacity-0 hover:opacity-100 transition-opacity duration-300 text-center'>
+                    <span className='text-white text-2xl font-bold block'>Acceptance <br /> Rate</span>
+                    <span className='text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent'>
+                        {data?.acceptanceRate}
+                    </span>
+                    </div>
                 </div>
-              </div>
+                </div>
             </div>
-          </div>
-        </motion.div>
+            </motion.div>
 
-        <motion.div
-          variants={fadeIn("left", "spring", 0.5, 0.75)}
-          className='w-full lg:w-1/2 space-y-4'
-        >
-          <p className='text-white text-[24px] font-semibold mb-8 text-center lg:text-left'>
-            Problem Distribution
-          </p>
-          <div className='flex flex-wrap gap-4'>
-            {stats.map((stat, index) => (
-              <div className='w-full sm:w-[calc(50%-16px)]' key={`stat-${index}`}>
-                <StatsCard {...stat} index={index} />
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            <motion.div
+            variants={fadeIn("left", "spring", 0.5, 0.75)}
+            className='w-full lg:w-1/2 space-y-4'
+            >
+            <p className='text-white text-[24px] font-semibold mb-8 text-center lg:text-left'>
+                Problem Distribution
+            </p>
+            <div className='flex flex-wrap gap-4'>
+                {stats.map((stat, index) => (
+                <div className='w-full sm:w-[calc(50%-16px)]' key={`stat-${index}`}>
+                    <StatsCard {...stat} index={index} />
+                </div>
+                ))}
+            </div>
+            </motion.div>
+        </div>
+      )}
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
