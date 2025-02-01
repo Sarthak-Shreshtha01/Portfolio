@@ -39,6 +39,36 @@ const Ball = (props) => {
 }
 
 const BallCanvas = ({icon}) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
+
+    setIsMobile(mediaQuery.matches);
+
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    } 
+
+    mediaQuery.addEventListener('change' , handleMediaQueryChange );
+
+    return () => {
+      mediaQuery.removeEventListener('change' , handleMediaQueryChange );
+    }
+  } , [] )
+
+  if (isMobile) {
+    return (
+      <div className="flex justify-center items-center w-28 h-28 bg-[#f5f5f7] rounded-xl">
+        <img 
+          src={icon}
+          alt="technology"
+          className="w-16 h-16 object-contain"
+        />
+      </div>
+    );
+  }
+
   return(
     <Canvas
       frameloop='demand'
