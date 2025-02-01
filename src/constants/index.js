@@ -42,6 +42,10 @@ import {
       title: "Education",
     },
     {
+      id : "dsa",
+      title : "DSA",
+    },
+    {
       id: "contact",
       title: "Contact",
     },
@@ -53,7 +57,7 @@ import {
       icon: web,
     },
     {
-      title: "React Native Developer",
+      title: "React Developer",
       icon: mobile,
     },
     {
@@ -61,7 +65,7 @@ import {
       icon: backend,
     },
     {
-      title: "Content Creator",
+      title: "Data Structures and Algorithms",
       icon: creator,
     },
   ];
@@ -195,42 +199,42 @@ import {
   const testimonials = [
     {
       testimonial:
-        "Working with this developer was a game-changer for our startup. Their expertise in React and modern web technologies helped us scale our platform efficiently.",
-      name: "Priya Sharma",
-      designation: "Technical Director",
-      company: "TechVista Solutions",
-      image: "https://randomuser.me/api/portraits/women/8.jpg",
+        "Working together on our Web Development project was a great experience. Their strong grasp of React and ability to explain complex concepts helped our entire team succeed.",
+      name: "Ankit Kumar",
+      designation: "CSE Student",
+      company: "BIT Mesra",
+      image: "https://randomuser.me/api/portraits/men/8.jpg",
     },
     {
       testimonial:
-        "An exceptional full-stack developer who brings both technical excellence and innovative problem-solving to the table. Their work on our project was outstanding.",
-      name: "Rahul Verma",
-      designation: "Product Manager",
-      company: "InnovateHub India",
-      image: "https://randomuser.me/api/portraits/men/3.jpg",
+        "During our hackathon, their problem-solving skills and dedication were impressive. They took the lead on implementing key features that helped us win second place.",
+      name: "Priya Singh",
+      designation: "IT Student", 
+      company: "BIT Mesra",
+      image: "https://randomuser.me/api/portraits/women/3.jpg",
     },
     {
       testimonial:
-        "Their proficiency in modern web development and ability to deliver clean, maintainable code made them an invaluable asset to our development team.",
-      name: "Arun Patel",
-      designation: "Engineering Lead",
-      company: "Digital Dynamics",
+        "As a fellow member of the coding club, I've seen them mentor junior students with patience and clarity. Their technical knowledge and teaching ability make them a valuable peer.",
+      name: "Rohit Sharma",
+      designation: "Club Lead",
+      company: "BIT Mesra",
       image: "https://randomuser.me/api/portraits/men/12.jpg",
     },
   ];
   
   const projects = [
     {
-      name: "Car Rent",
+      name: "3D Developer Portfolio",
       description:
-        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+        "A modern and interactive portfolio website built with React, Three.js, and Tailwind CSS. Features 3D models, animations, and a responsive design to showcase developer projects and skills.",
       tags: [
         {
           name: "react",
           color: "blue-text-gradient",
         },
         {
-          name: "mongodb",
+          name: "threejs",
           color: "green-text-gradient",
         },
         {
@@ -242,20 +246,20 @@ import {
       source_code_link: "https://github.com/",
     },
     {
-      name: "Job IT",
+      name: "Real-time Chat Application",
       description:
-        "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+        "Full-stack chat application with real-time messaging, user authentication, and room creation capabilities. Built using Socket.IO for real-time communication and MongoDB for message persistence.",
       tags: [
         {
           name: "react",
           color: "blue-text-gradient",
         },
         {
-          name: "restapi",
+          name: "socket.io",
           color: "green-text-gradient",
         },
         {
-          name: "scss",
+          name: "mongodb",
           color: "pink-text-gradient",
         },
       ],
@@ -263,20 +267,20 @@ import {
       source_code_link: "https://github.com/",
     },
     {
-      name: "Trip Guide",
+      name: "EduTech Learning Platform",
       description:
-        "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+        "Comprehensive e-learning platform featuring video courses, interactive quizzes, and progress tracking. Includes user authentication, payment integration, and a responsive dashboard for both students and instructors.",
       tags: [
         {
-          name: "nextjs",
+          name: "react",
           color: "blue-text-gradient",
         },
         {
-          name: "supabase",
+          name: "nodejs",
           color: "green-text-gradient",
         },
         {
-          name: "css",
+          name: "mongodb",
           color: "pink-text-gradient",
         },
       ],
