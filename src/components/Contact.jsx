@@ -18,10 +18,38 @@ const Contact = () => {
   const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
-    
+    const { name, value } = e.target
+    setForm({ ...form, [name]: value })
   }
 
-  const handleSubmit = (e) => {}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoading(true)
+
+    console.log(formRef.current)
+
+    emailjs.sendForm(
+      'service_5esu41s', // Replace with your EmailJS service ID  service_5esu41s
+      'template_u5dzreb', // Replace with your EmailJS template ID template_n477hkw
+      formRef.current,  // This line passes the form DOM element to emailjs.sendForm() to send the form data
+      'Vw4ek3V-4MBnxCbpj' // Replace with your EmailJS public key Vw4ek3
+    )
+    .then(() => {
+      setLoading(false)
+      alert('Thank you. I will get back to you as soon as possible.')
+      
+      setForm({
+        name: '',
+        email: '',
+        message: ''
+      })
+    })
+    .catch((error) => {
+      setLoading(false)
+      console.log(error)
+      alert('Something went wrong. Please try again.')
+    })
+  }
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden " >

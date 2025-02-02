@@ -1,6 +1,7 @@
 import { Tilt } from 'react-tilt'
 import { motion } from 'framer-motion'
 import { github } from '../assets'
+import { live } from '../assets'
 import { styles } from '../styles'
 import { SectionWrapper } from '../hoc'
 import {projects} from "../constants"
@@ -14,7 +15,8 @@ const ProjectCard = ({index , name , description , tags , image , source_code_li
      >
       <Tilt
       options={{
-        max: 45,        // Maximum tilt rotation angle in degrees
+        reverse: true,  // Makes it tilt away from mouse instead of towards it
+        max: 15,        // Maximum tilt rotation angle in degrees
         scale: 1,       // Scale factor for tilt effect (1 = no scaling)
         speed: 450      // Speed of the tilt animation in milliseconds
       }}
@@ -24,12 +26,23 @@ const ProjectCard = ({index , name , description , tags , image , source_code_li
 
           <div className='absolute inset-0 flex justify-end m-3 card-img_hover  ' >
 
-            <div
-            onClick={() => window.open(source_code_link , "_blank")}
-            className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer '
-            >
-              <img src={github} alt={name} className='w-1/2 h-1/2 object-contain ' />
-            </div>
+            {live_link && (
+              <div
+              onClick={() => window.open(live_link , "_blank")}
+              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer '
+              >
+                <img src={live} alt={name} className='w-1/2 h-1/2 object-contain ' />
+              </div>
+            )}
+
+            {source_code_link && (
+              <div
+              onClick={() => window.open(source_code_link , "_blank")}
+              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer '
+              >
+                <img src={github} alt={name} className='w-1/2 h-1/2 object-contain ' />
+              </div>
+            )}
 
           </div>
 

@@ -13,6 +13,9 @@ import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
 import { fadeIn, textVariant } from '../utils/motion';
 import axios from 'axios';
+import ReactCalendarHeatmap from 'react-calendar-heatmap';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import 'react-calendar-heatmap/dist/styles.css';
 
 // Register ChartJS components
 ChartJS.register(
@@ -47,6 +50,7 @@ const DsaDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [submissionData, setSubmissionData] = useState([]);
 
   const getData = async () => {
     setLoading(true);
@@ -61,6 +65,16 @@ const DsaDashboard = () => {
         console.log('API Response:', response.data);
         const data = response.data;
         setData(data);
+        
+        // Convert the submission calendar data from API
+        if (data.submissionCalendar) {
+          const submissions = Object.entries(data.submissionCalendar).map(([timestamp, count]) => ({
+            date: new Date(parseInt(timestamp) * 1000).toISOString().split('T')[0],
+            count: count
+          }));
+          setSubmissionData(submissions);
+        }
+        
         setLoading(false);
         return;
       } catch (error) {
@@ -168,6 +182,33 @@ const DsaDashboard = () => {
     }
   };
 
+  // Add these custom styles
+  const customStyles = {
+    calendar: {
+      backgroundColor: 'rgba(32, 32, 35, 0.8)',
+      borderRadius: '10px',
+      padding: '20px',
+      color: '#fff',
+    }
+  };
+
+  // Add this before the return statement
+  const getTooltipDataAttr = (value) => {
+    if (!value || !value.date) {
+      return {'data-tip': 'No submissions'};
+    }
+    return {
+      'data-tip': `${value.date}: ${value.count} submissions`
+    };
+  };
+
+  const getClassForValue = (value) => {
+    if (!value || !value.count) {
+      return 'color-empty';
+    }
+    return `color-scale-${Math.min(Math.floor(value.count / 2), 4)}`;
+  };
+
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -219,6 +260,27 @@ const DsaDashboard = () => {
             </motion.div>
         </div>
       )}
+
+      <motion.div
+        variants={fadeIn("up", "spring", 0.5, 0.75)}
+        className='mt-20'
+      >
+        <h3 className='text-white text-[24px] font-semibold mb-8'>
+          Submission Calendar
+        </h3>
+        <div className='submission-calendar' style={customStyles.calendar}>
+          <ReactCalendarHeatmap
+            startDate={new Date(Date.now() - 365 * 24 * 60 * 60 * 1000)}
+            endDate={new Date()}
+            values={submissionData}
+            classForValue={getClassForValue}
+            tooltipDataAttrs={getTooltipDataAttr}
+            // showWeekdayLabels={true}
+            gutterSize={4}
+          />
+          <ReactTooltip />
+        </div>
+      </motion.div>
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}

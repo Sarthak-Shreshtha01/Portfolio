@@ -36,6 +36,7 @@ import leetcode from "./tech/leetcode.svg";
 import cpp from "./tech/cpp.png";
 import c from "./tech/c.png";
 import gfg from "./tech/gfg.svg";
+import live from "./live.svg";
 
 export {
   logo,
@@ -72,4 +73,5 @@ export {
   gfg,
   dps,
   bit,
+  live,
 };

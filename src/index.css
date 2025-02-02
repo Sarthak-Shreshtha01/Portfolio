@@ -218,3 +218,59 @@
      transform: rotate(1turn);
   }
 }
+
+/* Add this to your CSS file */
+.submission-calendar {
+  .react-calendar-heatmap text {
+    font-size: 10px;
+    fill: #aaa;
+  }
+
+  .react-calendar-heatmap .react-calendar-heatmap-small-text {
+    font-size: 5px;
+  }
+
+  .react-calendar-heatmap rect:hover {
+    stroke: #555;
+    stroke-width: 1px;
+  }
+
+  /* Increase spacing between months */
+  .react-calendar-heatmap-month-label {
+    fill: #aaa;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  /* Adjust weekday labels */
+  .react-calendar-heatmap-weekday-label {
+    fill: #aaa;
+    font-size: 9px;
+  }
+
+  .react-calendar-heatmap .color-empty {
+    fill: #1f1f1f;
+  }
+
+  .react-calendar-heatmap .color-scale-0 {
+    fill: #1f1f1f;
+  }
+
+  .react-calendar-heatmap .color-scale-1 {
+    fill: #0e4429;
+  }
+
+  .react-calendar-heatmap .color-scale-2 {
+    fill: #006d32;
+  }
+
+  .react-calendar-heatmap .color-scale-3 {
+    fill: #26a641;
+  }
+
+  .react-calendar-heatmap .color-scale-4 {
+    fill: #39d353;
+  }
+  
+}
